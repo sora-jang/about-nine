@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AboutNine | Score</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<!-- ✅ score 페이지에만 스타일 적용되도록 body에 클래스 -->
+<body class="scorePage">
+  <main class="scoreWrapPage">
+    <header class="scoreTopbar">
+      <div class="brand">
+        <div class="brandDot"></div>
+        <div class="brandText">
+          <div class="brandName">AboutNine</div>
+          <div class="brandSub">Chemistry Result</div>
+        </div>
+      </div>
+
+      <!-- 기존 프로젝트 btn 클래스 충돌 방지 위해 scoreBtn로 분리 -->
+      <button class="scoreBtn ghost" id="btnHome" type="button">Home</button>
+    </header>
+
+    <section class="scoreGrid">
+      <!-- Main score card -->
+      <article class="scoreCard hero">
+        <div class="cardHead">
+          <h1 class="title">Chemistry Score</h1>
+          <p class="subtitle">대화 기반으로 계산된 친화도</p>
+        </div>
+
+        <div class="scoreHeroWrap">
+          <div class="scoreRing" aria-label="Chemistry score ring">
+            <div class="scoreNum">
+              <span id="chemistryScore">0</span>
+              <span class="scoreUnit">/ 100</span>
+            </div>
+            <div class="scoreHint" id="chemistryHint">—</div>
+          </div>
+
+          <div class="metaCol">
+            <div class="metaRow">
+              <div class="metaLabel">Turns</div>
+              <div class="metaVal" id="turnsVal">-</div>
+            </div>
+            <div class="metaRow">
+              <div class="metaLabel">Avg RT</div>
+              <div class="metaVal" id="avgRtVal">-</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Breakdown card -->
+      <article class="scoreCard breakdown">
+        <div class="cardHead row">
+          <h2 class="title2">Breakdown</h2>
+          <p class="subtitle">LSM / RT / Empathy</p>
+        </div>
+
+        <div class="bdList">
+          <!-- LSM -->
+          <div class="bdItem">
+            <div class="bdTop">
+              <div class="bdName">LSM</div>
+              <div class="bdPct"><span id="lsmPct">0</span>%</div>
+            </div>
+            <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="LSM percent">
+              <div class="barFill" id="lsmBar" style="width:0%"></div>
+            </div>
+            <div class="bdDesc">언어 스타일 유사도 (Language Style Matching)</div>
+          </div>
+
+          <!-- RT -->
+          <div class="bdItem">
+            <div class="bdTop">
+              <div class="bdName">RT</div>
+              <div class="bdPct"><span id="rtPct">0</span>%</div>
+            </div>
+            <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="RT percent">
+              <div class="barFill" id="rtBar" style="width:0%"></div>
+            </div>
+            <div class="bdDesc">응답 속도 안정성/자연스러움 (Response Time)</div>
+          </div>
+
+          <!-- Empathy -->
+          <div class="bdItem">
+            <div class="bdTop">
+              <div class="bdName">Empathy</div>
+              <div class="bdPct"><span id="empathyPct">0</span>%</div>
+            </div>
+            <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Empathy percent">
+              <div class="barFill" id="empathyBar" style="width:0%"></div>
+            </div>
+            <div class="bdDesc">공감 표현의 밀도/비율</div>
+          </div>
+        </div>
+
+        <div class="bdFoot">
+          <button class="scoreBtn" id="btnRecalc" type="button">Recalculate</button>
+          <button class="scoreBtn ghost" id="btnClear" type="button">Clear</button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="./score.js"></script>
+</body>
+</html>

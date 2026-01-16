@@ -2,26 +2,25 @@ let recognition = null;
 let startTime = null;
 let timerInterval = null;
 
+let currentSpeaker = "A"; // A or B
+
 const statusEl = document.getElementById("status");
 const timerEl = document.getElementById("timer");
-const transcriptEl = document.getElementById("transcript");
-const sttStateEl = document.getElementById("sttState");
+const transcriptEl = document.querySelector(".transcript");
 const hangupBtn = document.getElementById("hangupBtn");
-
-const remoteAudioEl = document.getElementById("remoteAudio");
-const localAudioEl = document.getElementById("localAudio");
+const switchBtn = document.getElementById("switchBtn");
 
 const convo = [];
 
 /* =========================
-   Chat UI
+   UI
 ========================= */
 function appendLine(speaker, text) {
   const muted = transcriptEl.querySelector(".t-muted");
   if (muted) muted.remove();
 
   const line = document.createElement("div");
-  line.className = `line ${speaker}`;
+  line.className = `line ${speaker === "A" ? "me" : "other"}`;
 
   const msg = document.createElement("div");
   msg.className = "msg";
@@ -32,10 +31,11 @@ function appendLine(speaker, text) {
   transcriptEl.scrollTop = transcriptEl.scrollHeight;
 }
 
-function pushConvo(speaker, text, ts = Date.now()) {
-  const clean = String(text || "").trim();
+function pushConvo(speaker, text) {
+  const clean = text.trim();
   if (!clean) return;
-  convo.push({ speaker, text: clean, ts });
+
+  convo.push({ speaker, text: clean, ts: Date.now() });
   appendLine(speaker, clean);
 }
 
@@ -56,75 +56,48 @@ function startTimer() {
    STT
 ========================= */
 function startSTT() {
-  if (!("webkitSpeechRecognition" in window)) {
-    sttStateEl.textContent = "STT not supported";
-    return;
-  }
-
   recognition = new webkitSpeechRecognition();
   recognition.lang = "en-US";
   recognition.continuous = true;
   recognition.interimResults = false;
 
-  sttStateEl.textContent = "Listening…";
+  recognition.onresult = (e) => {
+    const last = e.results[e.results.length - 1];
+    if (!last.isFinal) return;
 
-  recognition.onresult = (event) => {
-    const last = event.results[event.results.length - 1];
-    if (!last || !last.isFinal) return;
-
-    const text = last[0].transcript.trim();
-    if (!text) return;
-
-    const ts = Date.now();
-    pushConvo("me", text, ts);
-    window.__webrtc?.sendSTT?.(text, ts);
+    pushConvo(currentSpeaker, last[0].transcript);
   };
 
   recognition.onerror = (e) => {
-    console.error("STT error:", e);
-    sttStateEl.textContent = `STT error: ${e.error}`;
+    if (e.error === "no-speech") {
+      recognition.stop();
+      setTimeout(() => recognition.start(), 300);
+      return;
+    }
+    statusEl.textContent = `STT error`;
   };
 
-  recognition.start(); // ✅ 마이크 허용 팝업
+  recognition.start();
 }
 
 /* =========================
-   Receive remote STT
+   Controls
 ========================= */
-window.addEventListener("remote-stt", (e) => {
-  const payload = e.detail || {};
-  const text = payload.text || payload;
-  const ts = payload.ts || Date.now();
-  pushConvo("other", text, ts);
+switchBtn.addEventListener("click", () => {
+  currentSpeaker = currentSpeaker === "A" ? "B" : "A";
+  switchBtn.textContent = `현재 화자: ${currentSpeaker}`;
 });
 
-/* =========================
-   Hang up
-========================= */
 hangupBtn.addEventListener("click", () => {
-  if (recognition) recognition.stop();
+  recognition?.stop();
   clearInterval(timerInterval);
   location.href = "./score.html";
 });
 
 /* =========================
-   Init (중요)
+   Init
 ========================= */
-window.addEventListener("load", async () => {
-  try {
-    await window.__webrtc?.startChat?.({
-      onStatus: (txt) => (statusEl.textContent = txt),
-      remoteAudioEl,
-      localAudioEl
-    });
-    statusEl.textContent = "Connected";
-  } catch {
-    statusEl.textContent = "Mic permission needed";
-  }
-
-  hangupBtn.disabled = false;
+window.addEventListener("load", () => {
   startTimer();
-
-  // ✅ Start Chat 클릭 직후 바로 실행
   startSTT();
 });

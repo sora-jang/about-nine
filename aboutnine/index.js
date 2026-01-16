@@ -1,9 +1,8 @@
 const startBtn = document.getElementById("startBtn");
 
 if (startBtn) {
-  startBtn.addEventListener("click", (e) => {
-    // a 태그 기본 이동 + 강제 이동 이중 보장
-    e.preventDefault();
+  startBtn.addEventListener("click", () => {
+    // 사용자 클릭 제스처 유지
     window.location.href = "./call.html";
   });
 }

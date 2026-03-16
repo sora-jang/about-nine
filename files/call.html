@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>ABOUTNINE | Call</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="call-screen">
+    <div class="call-card">
+      <div class="call-top">
+        <div>
+          <div class="call-title">Call</div>
+          <div class="call-status" id="status">Connecting…</div>
+        </div>
+
+        <div class="call-timer" id="timer">00:00</div>
+      </div>
+
+      <div class="call-actions">
+        <button id="hangupBtn" class="btn danger" type="button" disabled>통화 종료</button>
+      </div>
+
+      <div class="transcript-wrap">
+        <div class="transcript-head">
+          <div class="th-title">대화 내용 (STT)</div>
+          <div class="th-sub" id="sttState">STT: 준비 중…</div>
+        </div>
+        <div id="transcript" class="transcript">
+          <div class="t-muted">통화가 시작되면 STT 텍스트가 여기에 표시돼요.</div>
+        </div>
+      </div>
+
+      <div class="call-hint">
+        데모에서는 각 탭이 자기 목소리를 STT로 변환하고, 결과를 서로 공유합니다.
+      </div>
+    </div>
+
+    <audio id="remoteAudio" autoplay playsinline></audio>
+    <audio id="localAudio" autoplay muted playsinline></audio>
+  </main>
+
+  <script src="./webrtc.js"></script>
+  <script src="./call.js"></script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>about nine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #282829; color: #f3f3f3; font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,.07); }
+    .logo { font-family: 'Playfair Display', serif; font-size: 17px; color: #f3f3f3; }
+    .nav-btn { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13); border-radius: 100px; padding: 7px 14px; font-size: 11px; color: rgba(255,255,255,.6); font-family: 'DM Sans', sans-serif; cursor: pointer; }
+
+    .hero { padding: 44px 20px 36px; text-align: center; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(75,106,217,.18); border: 1px solid rgba(75,106,217,.38); border-radius: 100px; padding: 5px 13px; font-size: 11px; color: #b0c0f0; margin-bottom: 20px; letter-spacing: .3px; }
+    .dot { width: 5px; height: 5px; border-radius: 50%; background: #7b9fe0; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.75)} }
+    .h1 { font-family: 'Merriweather', serif; font-size: 32px; line-height: 1.2; color: #f0ecfc; letter-spacing: -0.5px; margin-bottom: 16px; }
+    .h1 em { font-style: italic; color: #9888d8; }
+    .sub { font-size: 14px; color: rgba(243,243,243,.48); line-height: 1.65; margin-bottom: 28px; font-weight: 300; }
+
+    .timebadge { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 10px 14px; margin-bottom: 28px; text-align: left; }
+    .clock { width: 30px; height: 30px; border-radius: 50%; background: rgba(75,106,217,.2); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+    .ttext strong { display: block; font-size: 12px; font-weight: 500; color: #ccc8f0; }
+    .ttext span { font-size: 11px; color: rgba(255,255,255,.3); }
+
+    .cta { display: flex; flex-direction: column; gap: 10px; }
+    .inp { width: 100%; height: 50px; background: rgba(255,255,255,.09) !important; border: 1.5px solid rgba(255,255,255,.24) !important; border-radius: 12px; padding: 0 16px; font-size: 14px; color: #f3f3f3 !important; font-family: 'DM Sans', sans-serif; outline: none; -webkit-appearance: none; }
+    .inp::placeholder { color: rgba(255,255,255,.45) !important; opacity: 1 !important; }
+    .joinbtn { width: 100%; height: 50px; border-radius: 12px; border: none; background: linear-gradient(90deg, #2f6fd6, #4b6ad9 50%, #7b4aa8); color: #fff; font-size: 15px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; box-shadow: 0 8px 24px rgba(47,111,214,.38); }
+    .trust { font-size: 11px; color: rgba(255,255,255,.26); text-align: center; }
+    .div { height: 1px; background: rgba(255,255,255,.06); margin: 0 20px; }
+
+    .prob { padding: 28px 20px; background: rgba(255,255,255,.015); }
+    .slabel { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,.2); text-align: center; margin-bottom: 18px; }
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .scard { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: 12px; padding: 14px 12px; text-align: center; }
+    .snum { font-family: 'Playfair Display', serif; font-size: 26px; color: #9888d8; letter-spacing: -1px; line-height: 1; margin-bottom: 4px; }
+    .slab { font-size: 10px; color: rgba(255,255,255,.3); line-height: 1.4; }
+
+    .profiles { padding: 28px 20px; }
+    .plist { display: flex; flex-direction: column; gap: 8px; }
+    .pcard { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: 14px; padding: 12px 14px; }
+    .pleft { display: flex; flex-direction: column; gap: 3px; }
+    .pname { display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,.88); }
+    .gd { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+    .gy { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,.18); flex-shrink: 0; }
+    .psong { font-size: 11px; color: rgba(255,255,255,.3); }
+    .cbtn { height: 30px; padding: 0 13px; border-radius: 100px; border: none; background: linear-gradient(90deg, #2f6fd6, #7b4aa8); color: rgba(255,255,255,.92); font-size: 11px; font-weight: 500; font-family: 'DM Sans', sans-serif; cursor: pointer; white-space: nowrap; }
+    .cbtn.off { background: rgba(255,255,255,.06); color: rgba(255,255,255,.24); cursor: default; }
+
+    .how { padding: 28px 20px; }
+    .rounds { display: flex; flex-direction: column; gap: 8px; }
+    .rcard { display: flex; align-items: flex-start; gap: 14px; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07); border-radius: 14px; padding: 16px 14px; }
+    .rnum { font-family: 'Playfair Display', serif; font-size: 22px; color: rgba(75,106,217,.5); line-height: 1; flex-shrink: 0; width: 28px; }
+    .rtag { display: inline-block; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: #9888d8; background: rgba(152,136,216,.12); border: 1px solid rgba(152,136,216,.25); border-radius: 100px; padding: 2px 8px; margin-bottom: 5px; }
+    .rtitle { font-size: 13px; font-weight: 500; color: #ccc8f0; margin-bottom: 3px; }
+    .rdesc { font-size: 11px; color: rgba(255,255,255,.3); line-height: 1.55; font-weight: 300; }
+
+    .chem { padding: 0 20px 28px; }
+    .chem-card { background: rgba(14,14,18,.9); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; padding: 20px; text-align: center; }
+    .chem-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 12px; }
+    .chem-score { font-family: 'Playfair Display', serif; font-size: 64px; color: #f0ecfc; letter-spacing: -3px; line-height: 1; margin-bottom: 4px; }
+    .chem-sub { font-size: 11px; color: rgba(255,255,255,.28); margin-bottom: 16px; }
+    .chem-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-bottom: 14px; }
+    .pill { font-size: 10px; color: rgba(255,255,255,.5); background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09); border-radius: 100px; padding: 4px 10px; }
+    .chem-bars { display: flex; flex-direction: column; gap: 7px; text-align: left; }
+    .brow { display: flex; align-items: center; gap: 8px; }
+    .blabel { font-size: 10px; color: rgba(255,255,255,.35); width: 80px; flex-shrink: 0; }
+    .btrack { flex: 1; height: 4px; background: rgba(255,255,255,.07); border-radius: 100px; overflow: hidden; }
+    .bfill { height: 100%; border-radius: 100px; background: linear-gradient(90deg, #4b6ad9, #7b4aa8); }
+    .bval { font-size: 10px; color: rgba(255,255,255,.3); width: 24px; text-align: right; flex-shrink: 0; }
+
+    .pricing { padding: 0 20px 28px; }
+    .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .pbox { border-radius: 14px; padding: 18px 14px; border: 1px solid rgba(255,255,255,.08); background: rgba(255,255,255,.03); }
+    .pbox.featured { border-color: rgba(75,106,217,.4); background: rgba(75,106,217,.08); }
+    .ptier { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 8px; }
+    .pbox.featured .ptier { color: #9888d8; }
+    .pprice { font-family: 'Playfair Display', serif; font-size: 28px; color: #f0ecfc; letter-spacing: -1px; line-height: 1; margin-bottom: 2px; }
+    .pmo { font-size: 11px; color: rgba(255,255,255,.28); margin-bottom: 12px; }
+    .pfeature { font-size: 11px; color: rgba(255,255,255,.4); line-height: 1.6; }
+    .pfeature span { display: block; padding: 3px 0; border-top: 1px solid rgba(255,255,255,.06); }
+    .pfeature span:first-child { border-top: none; }
+
+    .bcta { padding: 0 20px 48px; text-align: center; }
+    .bcta h2 { font-family: 'Playfair Display', serif; font-size: 30px; color: #f0ecfc; letter-spacing: -1px; margin-bottom: 8px; line-height: 1.15; }
+    .bcta h2 em { font-style: italic; color: #9888d8; }
+    .bcta p { font-size: 13px; color: rgba(255,255,255,.28); margin-bottom: 20px; font-weight: 300; }
+
+    .foot { border-top: 1px solid rgba(255,255,255,.05); padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .foot span { font-size: 11px; color: rgba(255,255,255,.16); }
+    .flinks { display: flex; gap: 16px; }
+    .flinks a { font-size: 11px; color: rgba(255,255,255,.16); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="logo">about nine</div>
+
+  </nav>
+
+  <section class="hero">
+    <div class="badge"><div class="dot"></div>beta is live · every night at 9 PM</div>
+    <h1 class="h1">the dating app that brings<br><em>kindred souls<br>together</em></h1>
+    <p class="sub">dating apps are broken — 78% of users burn out from endless swiping. about nine fixes that. every night at 9, our AI unlocks 5 voice-matched profiles just for you.</p>
+    <div class="cta">
+      <input class="inp" type="email" placeholder="enter your email address" id="h-email" autocomplete="email" />
+      <button class="joinbtn" id="h-btn"> join the waitlist </button>
+      <div class="trust">free · no credit card · 30 sec signup</div>
+    </div>
+  </section>
+
+  <div class="div"></div>
+
+  <section class="profiles">
+    <div class="slabel">your 9 PM lineup looks like this</div>
+    <div class="plist">
+      <div class="pcard"><div class="pleft"><div class="pname"><span class="gd"></span>ethan cole</div><div class="psong">♪ ordinary – alex warren</div></div></div>
+      <div class="pcard"><div class="pleft"><div class="pname"><span class="gd"></span>liam parker</div><div class="psong">♪ beautiful – bazzi</div></div></div>
+      <div class="pcard"><div class="pleft"><div class="pname"><span class="gd"></span>noah bennett</div><div class="psong">♪ daisies – justin bieber</div></div></div>
+      <div class="pcard"><div class="pleft"><div class="pname"><span class="gd"></span>lucas grant</div><div class="psong">♪ soda pop – saja boys</div></div></div>
+      <div class="pcard"><div class="pleft"><div class="pname"><span class="gy"></span>jack morgan</div><div class="psong">♪ believer – imagine dragons</div></div></div>
+    </div>
+  </section>
+
+  <div class="div"></div>
+
+  <section class="how">
+    <div class="slabel">3 rounds. one real connection.</div>
+    <div class="rounds">
+      <div class="rcard">
+        <div class="rnum">01</div>
+        <div>
+          <div class="rtag">round 1</div>
+          <div class="rtitle">taste & vibe</div>
+          <div class="rdesc">food, music, everyday preferences. coco, our AI, guides the conversation so it never goes quiet.</div>
+        </div>
+      </div>
+      <div class="rcard">
+        <div class="rnum">02</div>
+        <div>
+          <div class="rtag">round 2</div>
+          <div class="rtitle">aesthetic & style</div>
+          <div class="rdesc">visual world, aesthetic sensibility. you start to feel whether this person is your kind of person.</div>
+        </div>
+      </div>
+      <div class="rcard">
+        <div class="rnum">03</div>
+        <div>
+          <div class="rtag">round 3</div>
+          <div class="rtitle">values & go / nah</div>
+          <div class="rdesc">core values, life outlook. coco analyzes the call and tells you whether to go — or not.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="div"></div>
+
+  <section class="chem" style="padding-top:28px;">
+    <div class="slabel">after every call, you get this</div>
+    <div class="chem-card">
+      <div class="chem-label">chemistry score</div>
+      <div class="chem-score">74</div>
+      <div class="chem-sub">/ 100 · based on your real conversation</div>
+      <div class="chem-pills">
+        <div class="pill">warmth ✓</div>
+        <div class="pill">tempo matched ✓</div>
+        <div class="pill">curiosity ✓</div>
+        <div class="pill">values undefined</div>
+      </div>
+      <div class="chem-bars">
+        <div class="brow"><div class="blabel">LSM</div><div class="btrack"><div class="bfill" style="width:82%"></div></div><div class="bval">82</div></div>
+        <div class="brow"><div class="blabel">empathy</div><div class="btrack"><div class="bfill" style="width:70%"></div></div><div class="bval">70</div></div>
+        <div class="brow"><div class="blabel">turn-taking</div><div class="btrack"><div class="bfill" style="width:65%"></div></div><div class="bval">65</div></div>
+        <div class="brow"><div class="blabel">response time</div><div class="btrack"><div class="bfill" style="width:78%"></div></div><div class="bval">78</div></div>
+        <div class="brow"><div class="blabel">romantic sync</div><div class="btrack"><div class="bfill" style="width:60%"></div></div><div class="bval">60</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="div"></div>
+
+  <section class="pricing" style="padding-top:28px;">
+    <div class="slabel">pricing</div>
+    <div style="background: rgba(75,106,217,.08); border: 1px solid rgba(75,106,217,.35); border-radius: 16px; padding: 28px 20px; text-align: center;">
+      <div style="font-family: 'Playfair Display', serif; font-size: 48px; color: #f0ecfc; letter-spacing: -2px; line-height: 1; margin-bottom: 8px;">free</div>
+      <div style="font-size: 13px; color: #9888d8; font-weight: 500; margin-bottom: 16px;">during beta</div>
+      <div style="height: 1px; background: rgba(255,255,255,.07); margin-bottom: 16px;"></div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="font-size: 12px; color: rgba(255,255,255,.4);">✓ &nbsp;all features included</div>
+        <div style="font-size: 12px; color: rgba(255,255,255,.4);">✓ &nbsp;unlimited GO calls</div>
+        <div style="font-size: 12px; color: rgba(255,255,255,.4);">✓ &nbsp;chemistry scores</div>
+        <div style="font-size: 12px; color: rgba(255,255,255,.4);">✓ &nbsp;coco AI guide</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="div"></div>
+  <div style="height:28px;"></div>
+
+  <section class="bcta">
+    <h2>ready for your<br><em>9 PM moment?</em></h2>
+    <p>join the waitlist · your first match is tonight</p>
+    <div class="cta">
+      <input class="inp" type="email" placeholder="enter your email address" id="b-email" autocomplete="email" />
+      <button class="joinbtn" id="b-btn">join free →</button>
+      <div class="trust">no spam · no credit card · unsubscribe anytime</div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>© 2025 about nine</span>
+    <div class="flinks"><a href="#">privacy</a><a href="#">terms</a><a href="mailto:support@aboutnine.ai">contact</a></div>
+  </footer>
+
+  <script src="./app.js"></script>
+  <script>
+    function join(iid, bid) {
+      const i = document.getElementById(iid), b = document.getElementById(bid);
+      const e = (i.value||'').trim();
+      if (!e || !e.includes('@')) {
+        i.style.borderColor='rgba(239,68,68,.6)';
+        i.placeholder='please enter a valid email';
+        setTimeout(()=>{ i.style.borderColor=''; i.placeholder='enter your email address'; }, 2200);
+        return;
+      }
+      b.textContent="✓ you're on the list!";
+      b.style.background='rgba(74,222,128,.7)';
+      b.style.cursor='default';
+      b.style.boxShadow='none';
+      i.value=''; i.placeholder="see you tonight at 9 PM 👋"; i.disabled=true;
+    }
+    document.getElementById('h-btn').addEventListener('click',()=>join('h-email','h-btn'));
+    document.getElementById('b-btn').addEventListener('click',()=>join('b-email','b-btn'));
+  </script>
+</body>
+</html>

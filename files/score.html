@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>ABOUTNINE | Chemistry</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="score-screen">
+    <div class="score-card">
+      <div class="score-head">
+        <div>
+          <div class="score-title">Chemistry</div>
+          <div class="score-sub" id="scoreMeta">Result</div>
+        </div>
+        <button class="ghost-btn" id="backHomeBtn" type="button">메인</button>
+      </div>
+
+      <div class="score-big">
+        <div class="score-num" id="scoreNum">—</div>
+        <div class="score-unit">/ 100</div>
+      </div>
+
+      <div class="score-bar">
+        <div class="score-fill" id="scoreFill" style="width:0%"></div>
+      </div>
+
+      <div class="score-grid" id="breakdown">
+        <!-- score.js에서 채움 -->
+      </div>
+
+      <div class="score-actions">
+        <button class="btn primary" id="againBtn" type="button">다시 통화하기</button>
+      </div>
+
+      <div class="score-note">
+        * 데모용 간이 점수예요. (LSM/공감표현/턴교대/응답속도 기반)
+      </div>
+    </div>
+  </main>
+
+  <script src="./score.js"></script>
+</body>
+</html>
